@@ -1,8 +1,0 @@
-bundle:
-  name: test
-
-workspace:
-  profile: test
-
-include:
-  - "*.yml"

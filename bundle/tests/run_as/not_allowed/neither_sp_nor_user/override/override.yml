@@ -1,4 +1,0 @@
-targets:
-  development:
-    default: true
-    run_as:

@@ -1,4 +1,0 @@
-bundle:
-  name: "Dancing Feet"
-  git:
-    branch: "feature-a"

@@ -1,5 +1,0 @@
-resources:
-  jobs:
-    my_second_job:
-      id: 2
-      name: "My Second Job"

@@ -1,9 +1,0 @@
-bundle:
-  name: a volume
-
-resources:
-  volumes:
-    foo:
-      catalog_name: main
-      name: my_volume
-      schema_name: myschema
