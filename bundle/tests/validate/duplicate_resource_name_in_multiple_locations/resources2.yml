@@ -1,8 +1,0 @@
-resources:
-  jobs:
-    foo:
-      name: job foo 3
-
-  experiments:
-    foo:
-      name: experiment foo

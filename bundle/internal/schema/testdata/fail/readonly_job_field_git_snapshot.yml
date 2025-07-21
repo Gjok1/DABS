@@ -1,8 +1,0 @@
-resources:
-  jobs:
-    foo:
-      git_source:
-        git_provider: GITHUB
-        git_url: www.whatever.com
-        git_snapshot:
-          used_commit: abcdef

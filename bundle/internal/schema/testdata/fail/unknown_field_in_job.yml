@@ -1,5 +1,0 @@
-resources:
-  jobs:
-    myjob:
-      # unknown fields should cause schema failure.
-      unknown_field: "value"

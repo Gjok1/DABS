@@ -1,6 +1,0 @@
-resources:
-  models:
-    mymodel:
-      creation_timestamp: 123
-      description: "my model"
-      unknown: "value"

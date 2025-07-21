@@ -1,8 +1,0 @@
-targets:
-  target1:
-    resources:
-      jobs:
-        job1:
-          description: job1
-        job2:
-          description: job2
