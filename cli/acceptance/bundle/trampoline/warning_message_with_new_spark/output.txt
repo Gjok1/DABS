@@ -1,0 +1,9 @@
+
+>>> errcode [CLI] bundle validate
+Name: test-bundle
+Target: dev
+Workspace:
+  User: [USERNAME]
+  Path: /Workspace/Users/[USERNAME]/.bundle/test-bundle/dev
+
+Validation OK!

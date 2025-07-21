@@ -1,0 +1,15 @@
+{
+    "name": "test-name",
+    "description": "My app description.",
+    "resources": [
+        {
+            "name": "api-key",
+            "description": "API key for external service.",
+            "secret": {
+                "scope": "my-scope",
+                "key": "my-key",
+                "permission": "READ"
+            }
+        }
+    ]
+}

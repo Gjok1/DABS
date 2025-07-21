@@ -1,0 +1,6 @@
+targets:
+  dev:
+    mode: development
+
+  prod:
+    mode: production

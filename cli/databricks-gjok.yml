@@ -1,0 +1,27 @@
+bundle:
+  name: test-gjok-table
+
+resources:
+  tables:
+    test_gjok:
+      name: test_gjok
+      catalog_name: test
+      schema_name: tabletest
+      table_type: MANAGED
+      data_source_format: DELTA
+      comment: "Test table for Gjok"
+      column:
+        - name: id
+          type_name: LONG
+          type_text: "BIGINT"
+          type_json: '{"name":"id","type":"long","nullable":false,"metadata":{}}'
+          position: 0
+          nullable: false
+          comment: "ID column"
+        - name: name
+          type_name: STRING
+          type_text: "STRING"
+          type_json: '{"name":"name","type":"string","nullable":true,"metadata":{}}'
+          position: 1
+          nullable: true
+          comment: "Name field"

@@ -1,0 +1,6 @@
+resources:
+  schemas:
+    schema1:
+      name: $SCHEMA_NAME
+      catalog_name: main
+      comment: This schema was created from DABs

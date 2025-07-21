@@ -1,0 +1,156 @@
+bundle:
+  name: table_example
+
+variables:
+  catalog_name:
+    default: main
+    description: The catalog name to use
+  schema_name:
+    default: analytics
+    description: The schema name to use
+
+resources:
+  # First create a schema for our tables
+  schemas:
+    analytics_schema:
+      name: ${var.schema_name}
+      catalog_name: ${var.catalog_name}
+      comment: "Analytics schema for our data tables"
+
+  # Define tables with different configurations
+  tables:
+    # Managed Delta table
+    customer_table:
+      name: customers
+      catalog_name: ${var.catalog_name}
+      schema_name: ${var.schema_name}
+      table_type: MANAGED
+      data_source_format: DELTA
+      comment: "Customer data table"
+      columns:
+        - name: customer_id
+          type_name: LONG
+          type_text: "BIGINT"
+          position: 0
+          nullable: false
+          comment: "Unique customer identifier"
+        - name: customer_name
+          type_name: STRING
+          type_text: "STRING"
+          position: 1
+          nullable: false
+          comment: "Customer name"
+        - name: email
+          type_name: STRING
+          type_text: "STRING"
+          position: 2
+          nullable: true
+          comment: "Customer email address"
+        - name: created_at
+          type_name: TIMESTAMP
+          type_text: "TIMESTAMP"
+          position: 3
+          nullable: false
+          comment: "Account creation timestamp"
+        - name: last_login
+          type_name: TIMESTAMP
+          type_text: "TIMESTAMP"
+          position: 4
+          nullable: true
+          comment: "Last login timestamp"
+      properties:
+        delta.autoOptimize.optimizeWrite: "true"
+        delta.autoOptimize.autoCompact: "true"
+      grants:
+        - principal: "data-analysts"
+          privileges: ["SELECT"]
+        - principal: "data-engineers"
+          privileges: ["SELECT", "MODIFY"]
+
+    # Orders table with foreign key relationship
+    orders_table:
+      name: orders
+      catalog_name: ${var.catalog_name}
+      schema_name: ${var.schema_name}
+      table_type: MANAGED
+      data_source_format: DELTA
+      comment: "Customer orders table"
+      columns:
+        - name: order_id
+          type_name: LONG
+          type_text: "BIGINT"
+          position: 0
+          nullable: false
+          comment: "Unique order identifier"
+        - name: customer_id
+          type_name: LONG
+          type_text: "BIGINT"
+          position: 1
+          nullable: false
+          comment: "Customer ID (foreign key)"
+        - name: order_date
+          type_name: DATE
+          type_text: "DATE"
+          position: 2
+          nullable: false
+          comment: "Order date"
+        - name: order_amount
+          type_name: DECIMAL
+          type_precision: 10
+          type_scale: 2
+          type_text: "DECIMAL(10,2)"
+          position: 3
+          nullable: false
+          comment: "Order amount"
+        - name: status
+          type_name: STRING
+          type_text: "STRING"
+          position: 4
+          nullable: false
+          comment: "Order status"
+      properties:
+        delta.autoOptimize.optimizeWrite: "true"
+        delta.autoOptimize.autoCompact: "true"
+      grants:
+        - principal: "data-analysts"
+          privileges: ["SELECT"]
+        - principal: "data-engineers"
+          privileges: ["SELECT", "MODIFY"]
+
+    # External table example
+    external_data_table:
+      name: external_data
+      catalog_name: ${var.catalog_name}
+      schema_name: ${var.schema_name}
+      table_type: EXTERNAL
+      data_source_format: PARQUET
+      storage_location: "s3://my-bucket/external-data/"
+      comment: "External table pointing to S3 data"
+      columns:
+        - name: id
+          type_name: LONG
+          type_text: "BIGINT"
+          position: 0
+          nullable: false
+        - name: data
+          type_name: STRING
+          type_text: "STRING"
+          position: 1
+          nullable: true
+      grants:
+        - principal: "data-analysts"
+          privileges: ["SELECT"]
+
+targets:
+  dev:
+    mode: development
+    default: true
+    variables:
+      catalog_name: dev_catalog
+      schema_name: dev_analytics
+
+  prod:
+    mode: production
+    variables:
+      catalog_name: prod_catalog
+      schema_name: analytics

@@ -1,0 +1,6 @@
+sync: {paths: []} # dont need to copy files
+
+experimental:
+  python:
+    resources:
+      - "resources:load_resources"

@@ -1,0 +1,81 @@
+
+>>> [CLI] bundle validate -o json -t development
+Warning: required field "quartz_cron_expression" is not set
+  at resources.quality_monitors.my_monitor.schedule
+  in databricks.yml:17:9
+
+Warning: required field "timezone_id" is not set
+  at resources.quality_monitors.my_monitor.schedule
+  in databricks.yml:17:9
+
+{
+  "mode": "development",
+  "quality_monitors": {
+    "my_monitor": {
+      "assets_dir": "/Shared/provider-test/databricks_monitoring/main.test.thing1",
+      "inference_log": {
+        "granularities": [
+          "1 day"
+        ],
+        "model_id_col": "model_id",
+        "prediction_col": "prediction",
+        "problem_type": "PROBLEM_TYPE_REGRESSION",
+        "timestamp_col": "timestamp"
+      },
+      "output_schema_name": "main.dev",
+      "schedule": null,
+      "table_name": "main.test.dev"
+    }
+  }
+}
+
+>>> [CLI] bundle validate -o json -t staging
+{
+  "mode": null,
+  "quality_monitors": {
+    "my_monitor": {
+      "assets_dir": "/Shared/provider-test/databricks_monitoring/main.test.thing1",
+      "inference_log": {
+        "granularities": [
+          "1 day"
+        ],
+        "model_id_col": "model_id",
+        "prediction_col": "prediction",
+        "problem_type": "PROBLEM_TYPE_REGRESSION",
+        "timestamp_col": "timestamp"
+      },
+      "output_schema_name": "main.staging",
+      "schedule": {
+        "quartz_cron_expression": "0 0 12 * * ?",
+        "timezone_id": "UTC"
+      },
+      "table_name": "main.test.staging"
+    }
+  }
+}
+
+>>> [CLI] bundle validate -o json -t production
+{
+  "mode": null,
+  "quality_monitors": {
+    "my_monitor": {
+      "assets_dir": "/Shared/provider-test/databricks_monitoring/main.test.thing1",
+      "inference_log": {
+        "granularities": [
+          "1 day",
+          "1 hour"
+        ],
+        "model_id_col": "model_id_prod",
+        "prediction_col": "prediction_prod",
+        "problem_type": "PROBLEM_TYPE_REGRESSION",
+        "timestamp_col": "timestamp_prod"
+      },
+      "output_schema_name": "main.prod",
+      "schedule": {
+        "quartz_cron_expression": "0 0 12 * * ?",
+        "timezone_id": "UTC"
+      },
+      "table_name": "main.test.prod"
+    }
+  }
+}

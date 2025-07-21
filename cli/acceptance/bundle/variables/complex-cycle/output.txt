@@ -1,0 +1,9 @@
+Warning: Variables references are too deep, stopping resolution after 11 rounds. Unresolved variables may remain.
+
+Name: cycle
+Target: default
+Workspace:
+  User: [USERNAME]
+  Path: /Workspace/Users/[USERNAME]/.bundle/cycle/default
+
+Found 1 warning

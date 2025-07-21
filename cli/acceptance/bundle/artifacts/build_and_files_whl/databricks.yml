@@ -1,0 +1,6 @@
+artifacts:
+  artifact_with_custom_dist:
+    type: whl
+    build: python setup.py bdist_wheel --dist-dir mydist
+    files:
+      - source: mydist/*.whl

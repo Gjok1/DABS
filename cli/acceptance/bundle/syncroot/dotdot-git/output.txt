@@ -1,0 +1,11 @@
+Error: path "[TEST_TMP_DIR]" is not within repository root "[TEST_TMP_DIR]/myrepo"
+
+Name: test-bundle
+Target: default
+Workspace:
+  User: [USERNAME]
+  Path: /Workspace/Users/[USERNAME]/.bundle/test-bundle/default
+
+Found 1 error
+
+Exit code: 1

@@ -1,0 +1,35 @@
+bundle:
+  name: table-with-warehouse
+
+resources:
+  tables:
+    updatable_table:
+      name: updatable_table
+      catalog_name: test
+      schema_name: tabletest
+      table_type: MANAGED
+      data_source_format: DELTA
+      comment: "Table that supports updates with warehouse"
+      warehouse_id: "e88b8bde026c6b80"  # Serverless Starter Warehouse
+      column:
+        - name: id
+          type_name: LONG
+          type_text: "BIGINT"
+          type_json: '{"name":"id","type":"long","nullable":false,"metadata":{}}'
+          position: 0
+          nullable: false
+          comment: "ID column"
+        - name: name
+          type_name: STRING
+          type_text: "STRING"
+          type_json: '{"name":"name","type":"string","nullable":true,"metadata":{}}'
+          position: 1
+          nullable: true
+          comment: "Name field"
+        - name: email
+          type_name: STRING
+          type_text: "STRING"
+          type_json: '{"name":"email","type":"string","nullable":true,"metadata":{}}'
+          position: 2
+          nullable: true
+          comment: "Email field - NEW COLUMN!"

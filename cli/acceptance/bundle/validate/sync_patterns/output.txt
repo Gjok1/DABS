@@ -1,0 +1,27 @@
+
+>>> [CLI] bundle validate
+Name: test-bundle
+Target: default
+Workspace:
+  User: [USERNAME]
+  Path: /Workspace/Users/[USERNAME]/.bundle/test-bundle/default
+
+Validation OK!
+
+>>> [CLI] bundle validate -o json
+{
+  "exclude": [
+    "conf/dir/*.txt"
+  ],
+  "include": [
+    "conf/dir/*.yml"
+  ],
+  "paths": [
+    "."
+  ]
+}
+
+>>> [CLI] bundle deploy
+Uploading bundle files to /Workspace/Users/[USERNAME]/.bundle/test-bundle/default/files...
+Deploying resources...
+Deployment complete!
