@@ -4,6 +4,7 @@ This repository contains the Databricks CLI with support for Databricks Asset Bu
 
 ## Table of Contents
 - [Overview](#overview)
+- [Building Locally](#building-locally)
 - [Getting Started](#getting-started)
 - [Table Configuration](#table-configuration)
 - [Deployment](#deployment)
@@ -18,6 +19,65 @@ Databricks Asset Bundles allow you to define and deploy tables as code using YAM
 - **Environment Management**: Deploy the same table definitions across dev/staging/prod environments
 - **Automated Deployment**: Use CI/CD pipelines to deploy table changes
 - **Permissions Management**: Define grants and access controls declaratively
+
+## Building Locally
+
+### Prerequisites
+
+- **Go 1.24.0 or later** (as specified in `cli/go.mod`)
+
+### Building the CLI
+
+1. **Navigate to the CLI directory**
+   ```bash
+   cd cli
+   ```
+
+2. **Install dependencies**
+   ```bash
+   go mod tidy
+   ```
+
+3. **Build the CLI binary**
+   ```bash
+   go build
+   ```
+
+### Binary Location
+
+After building, you'll find the binary at `./databricks` (in the cli directory).
+
+### Cross-Platform Building
+
+For specific platforms, you can use Go's cross-compilation:
+
+```bash
+# For Windows
+GOOS=windows GOARCH=amd64 go build -o databricks.exe
+
+# For macOS (Intel)
+GOOS=darwin GOARCH=amd64 go build -o databricks-mac-intel
+
+# For macOS (Apple Silicon)
+GOOS=darwin GOARCH=arm64 go build -o databricks-mac-arm
+
+# For Linux
+GOOS=linux GOARCH=amd64 go build -o databricks-linux
+```
+
+### Quick Start
+
+1. **Build the CLI**:
+   ```bash
+   cd cli
+   go mod tidy
+   go build
+   ```
+
+2. **Verify the build**:
+   ```bash
+   ./databricks --version
+   ```
 
 ## Getting Started
 
